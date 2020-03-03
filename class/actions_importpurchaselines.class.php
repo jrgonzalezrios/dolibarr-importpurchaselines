@@ -6,7 +6,7 @@
  *
  * This file is part of Importpurchaselines, un module développé sur la base du module importorderline développé par Marcos Garcia
  *
- * This file is part of ImportproductLines.
+ * This file is part of ImportPurchaseLines.
  *
  * Multismtp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ class ActionsImportpurchaselines
 		$langs->load('importpurchaselines@importpurchaselines');
 
 		if ($object->statut < 1) {
-			print '<div class="inline-block divButAction"><a class="butAction" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&amp;action=import">' . $langs->trans('ImportpurchaseLines') . '</a></div>';
+			print '<div class="inline-block divButAction"><a class="butAction" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&amp;action=import">' . $langs->trans('ImportPurchaseLines') . '</a></div>';
 		}
 
 		return 0;
@@ -68,7 +68,7 @@ class ActionsImportpurchaselines
 
 			$this->resprints = Utils::uploadForm(
 				$_SERVER["PHP_SELF"] . '?id=' . $object->id,
-				$langs->trans('ImportpurchaseLines'),
+				$langs->trans('ImportPurchaseLines'),
 				$langs->trans('ConfirmClonepurchase', $object->ref),
 				'confirm_import',
 				$langs->trans('SelectFileToImport')

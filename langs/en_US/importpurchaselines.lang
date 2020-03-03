@@ -1,0 +1,28 @@
+ImportPurchaseLinesInfo=Information of Import Purchase Lines module
+ImportPurchaseLines=Import purchase liness
+SelectFileToImport=Select the file you want to import
+UploadFileError=There was a problem while uploading the file
+UploadFileErrorUnsupportedFormat=Uploaded file is not a valid Spreadsheet
+UploadFileErrorFormat=Uploaded file does not match expected document format
+ErrorProductNotFound=Product with ref %s not found
+ErrorAddOrderLine=Error while trying to add product %s to the purchase
+ErrorZipExtensionNotAvailable=Zip extension is required and it is not available in this server.
+ErrorProductInvalidQty=Product with ref %s has an invalid quantity
+
+#Admin page
+ImportPurchaseLinesTitle=Import file
+ImportPurchaseLinesInfoFormat=The import file is a spreadsheet that has the following format:
+ImportPurchaseLinesInfoFormatA=Column A: %s
+ImportPurchaseLinesInfoFormatB=Column B: %s
+ImportPurchaseLinesInfoFormatC=Column C: %s
+ImportPurchaseLinesInfoFormatMore=First row will hold the column header in the language configured in Dolibarr. The rest of the columns will be ignored.
+ImportPurchaseLinesInfoFormatCreate=To generate the import file, access %s » %s » %s and select inputs "%s"
+ImportPurchaseLinesInfoFormatCreate2= and "%s". Select CSV, Excel 2007 or Excel 95 format and then edit the file to add the column "%s".
+ImportPurchaseLinesInfoFormatExample=Final result should look like the following:
+ImportPurchaseLinesInfoFormatExampleImgSrc=example-en_US.png
+ImportPurchaseLinesInfoFormatExampleImgAlt=Import example
+ImportPurchaseLinesInfoUsing=How does it work
+ImportPurchaseLinesInfoUsingOrder=Clients should fill the quantities they want to order in the purchase file. Then we create a customer order and click the button "%s", then we upload the order file and all products with quantity more or equal to 1 will be added.
+ImportPurchaseLinesAbout=About
+ImportPurchaseLinesAuthor=Module developed by Julio Gonzalez %s.
+ImportPurchaseLinesContact=If you experience any problems with the module, you can contact me at jrgonzalezrios@gmail.com

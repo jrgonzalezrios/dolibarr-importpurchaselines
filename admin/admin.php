@@ -36,45 +36,45 @@ $langs->load('importpurchaselines@importpurchaselines');
 llxHeader();
 
 $linkback='<a href="'.DOL_URL_ROOT.'/admin/modules.php">'.$langs->trans("BackToModuleList").'</a>';
-print load_fiche_titre($langs->trans('ImportproductLinesInfo'), $linkback);
+print load_fiche_titre($langs->trans('ImportPurchaseLinesInfo'), $linkback);
 
 ?>
 
-<div class="titre"><?php echo $langs->trans('ImportproductLinesTitle') ?></div>
+<div class="titre"><?php echo $langs->trans('ImportPurchaseLinesTitle') ?></div>
 
-<p><?php echo $langs->trans('ImportproductLinesInfoFormat') ?></p><ul>
-	<li><?php echo $langs->trans('ImportproductLinesInfoFormatA', $langs->transnoentities('Ref')) ?></li>
-	<li><?php echo $langs->trans('ImportproductLinesInfoFormatB', $langs->transnoentities('Label')) ?></li>
-	<li><?php echo $langs->trans('ImportproductLinesInfoFormatC', $langs->transnoentities('Qty')) ?></li>
-	<li><?php echo $langs->trans('ImportproductLinesInfoFormatD', $langs->transnoentities('PU ht')) ?></li>
+<p><?php echo $langs->trans('ImportPurchaseLinesInfoFormat') ?></p><ul>
+	<li><?php echo $langs->trans('ImportPurchaseLinesInfoFormatA', $langs->transnoentities('Ref')) ?></li>
+	<li><?php echo $langs->trans('ImportPurchaseLinesInfoFormatB', $langs->transnoentities('Label')) ?></li>
+	<li><?php echo $langs->trans('ImportPurchaseLinesInfoFormatC', $langs->transnoentities('Qty')) ?></li>
+	<li><?php echo $langs->trans('ImportPurchaseLinesInfoFormatD', $langs->transnoentities('PU ht')) ?></li>
 </ul>
-<p><?php echo $langs->trans('ImportproductLinesInfoFormatMore') ?></p>
-<p><?php echo $langs->trans('ImportproductLinesInfoFormatCreate',
+<p><?php echo $langs->trans('ImportPurchaseLinesInfoFormatMore') ?></p>
+<p><?php echo $langs->trans('ImportPurchaseLinesInfoFormatCreate',
 		$langs->transnoentities('Tools'),
 		$langs->transnoentities('NewExport'),
 		$langs->transnoentities('Products'),
 		$langs->transnoentities('Ref')
-	).$langs->trans('ImportproductLinesInfoFormatCreate2',
+	).$langs->trans('ImportPurchaseLinesInfoFormatCreate2',
 			$langs->transnoentities('Label'),
 			$langs->transnoentities('Qty')
 		) ?></p>
-<p><?php echo $langs->trans('ImportproductLinesInfoFormatExample') ?></p>
-<img src="<?php echo $langs->trans('ImportproductLinesInfoFormatExampleImgSrc') ?>" alt="<?php echo $langs->trans('ImportproductLinesInfoFormatExampleImgAlt') ?>">
+<p><?php echo $langs->trans('ImportPurchaseLinesInfoFormatExample') ?></p>
+<img src="<?php echo $langs->trans('ImportPurchaseLinesInfoFormatExampleImgSrc') ?>" alt="<?php echo $langs->trans('ImportPurchaseLinesInfoFormatExampleImgAlt') ?>">
 
 <br><br>
-<p><?php echo $langs->trans('ImportproductLinesInfoLibelleCol') ?></p>
+<p><?php echo $langs->trans('ImportPurchaseLinesInfoLibelleCol') ?></p>
 
-<div class="titre"><?php echo $langs->trans('ImportproductLinesInfoUsing') ?></div>
+<div class="titre"><?php echo $langs->trans('ImportPurchaseLinesInfoUsing') ?></div>
 
-<p><?php echo $langs->trans('ImportproductLinesInfoUsingpurchase', $langs->transnoentities('ImportpurchaseLines')) ?></p>
-<p><b><?php echo $langs->trans('ImportproductLinesInfoParticularites') ?></b></p>
+<p><?php echo $langs->trans('ImportPurchaseLinesInfoUsingpurchase', $langs->transnoentities('ImportPurchaseLines')) ?></p>
+<p><b><?php echo $langs->trans('ImportPurchaseLinesInfoParticularites') ?></b></p>
 
 <br>
 
-<div class="titre"><?php echo $langs->trans('ImportproductLinesAbout') ?></div>
+<div class="titre"><?php echo $langs->trans('ImportPurchaseLinesAbout') ?></div>
 
-<p><?php echo $langs->trans('ImportproductLinesAuthor', '<a href="#"></a>', '<a href="#">importorderline</a>', '<a href=""></a>') ?></p>
-<p><?php echo $langs->trans('ImportproductLinesContact', '<a href="mailto:jrgonzalezrios@gmail.com">jrgonzalezrios@gmail.com</a>') ?></p>
+<p><?php echo $langs->trans('ImportPurchaseLinesAuthor', '<a href="#"></a>', '<a href="#">importpurchaseline</a>', '<a href=""></a>') ?></p>
+<p><?php echo $langs->trans('ImportPurchaseLinesContact', '<a href="mailto:jrgonzalezrios@gmail.com">jrgonzalezrios@gmail.com</a>') ?></p>
 
 <?php
 

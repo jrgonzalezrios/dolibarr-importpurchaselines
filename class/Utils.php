@@ -191,7 +191,7 @@ class Utils
 			null, //string Code of the unit to use. Null to use the default one
 			'', //string Amount in currency
 			'', //string 'order', ...
-			0, //int Id of origin object*/
+			0 //int Id of origin object*/
 		);
 
 		if ($result < 0) {
