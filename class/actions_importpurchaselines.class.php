@@ -126,10 +126,37 @@ class ActionsImportpurchaselines
 
 				$maxrow = $activesheet->getHighestRow();
 
+				//Verify all products exist and have a positive quantity
+				for ($i = 2; $i <= $maxrow; $i++) {
+					$ref = $activesheet->getCellByColumnAndRow(0, $i)->getValue();
+					$qty = (int) $activesheet->getCellByColumnAndRow(2, $i)->getValue();
+						$prod = new Product($db);
+						
+						$rowNum =  " [At Row:" . $i . "]";
+						$fileHasErrors = false;
+						
+						if ($prod->fetch('', $ref) <= 0) {
+							$ref = $ref? $ref : "undefined";
+							$ref .= $rowNum;					
+							$fileHasErrors = true;
+							throw new Exception($langs->trans('ErrorProductNotFound', $ref));
+						}
+						if ($qty <= 0) {
+							$ref .= $rowNum;
+							$fileHasErrors = true;
+							throw new Exception($langs->trans('ErrorProductInvalidQty', $ref));
+						}
+
+						unset($prod);
+						if($fileHasErrors){
+							//Delete temporary file
+							unlink($file['tmp_name']);
+						}
+				}
+
 				for ($i = 2; $i <= $maxrow; $i++) {
 
 					$qty = (int) $activesheet->getCellByColumnAndRow(2, $i)->getValue();
-
 					
 					if (isset($qty)) {
 
@@ -190,7 +217,6 @@ class ActionsImportpurchaselines
 			}
 
 		}
-
 		return 0;
 	}
 

@@ -196,7 +196,7 @@ class Utils
 
 		if ($result < 0) {
 			throw new Exception($langs->trans('ErrorAddpurchaseLine', $prod->ref));
-			}
+		}
 	}
 
 }

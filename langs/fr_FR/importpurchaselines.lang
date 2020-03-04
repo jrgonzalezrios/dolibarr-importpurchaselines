@@ -7,6 +7,7 @@ UploadFileErrorFormat=Le fichier téléchargé ne correspond pas au format de do
 ErrorProductNotFound=Produit avec ref %s non trouvé
 ErrorAddpurchaseLine=Erreur en essayant d'ajouter le produit %s à la commande
 ErrorZipExtensionNotAvailable=L'extension Zip est nécessaire et n'est pas disponible sur ce serveur.
+ErrorProductInvalidQty=Le produit avec ref% a une quantité invalide.
 
 #Admin page
 ImportPurchaseLinesTitle=Importer un fichier

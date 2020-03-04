@@ -8,6 +8,7 @@ ErrorProductNotFound=Product with ref %s not found
 ErrorAddOrderLine=Error while trying to add product %s to the purchase
 ErrorZipExtensionNotAvailable=Zip extension is required and it is not available in this server.
 ErrorProductInvalidQty=Product with ref %s has an invalid quantity
+ErrorAddpurchaseLine= Error trying to add product % s to the order
 
 #Admin page
 ImportPurchaseLinesTitle=Import file
