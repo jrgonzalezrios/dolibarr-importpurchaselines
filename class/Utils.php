@@ -108,22 +108,25 @@ class Utils
 		$tva_tx = get_default_tva($mysoc, $object->thirdparty, $prod->id);
 		$tva_npr = get_default_npr($mysoc, $object->thirdparty, $prod->id);
 
-		$pu_ht = $prod->cost_price;
-		$price_base_type = $prod->price_base_type;
-		$type = $prod->type;
-		$pu_ttc = $prod->price_ttc;
-
 		// Local Taxes
 		$localtax1_tx = get_localtax($tva_tx, 1, $object->thirdparty);
 		$localtax2_tx = get_localtax($tva_tx, 2, $object->thirdparty);
 
-		include_once DOL_DOCUMENT_ROOT.'/fourn/class/fournisseur.product.class.php';
-		$product_fourn = new ProductFournisseur($db);
-		$product_fourn_result = $product_fourn->find_min_price_product_fournisseur($prod->id, $qty, $object->thirdparty->id);
+		$unit_price = $prod->cost_price;
+		$pu_ttc = $prod->price_ttc;
+		$price_base_type = $prod->price_base_type;
+		$type = $prod->type;		
 
-		if($product_fourn_result > 0){
-			$pu_ht = $product_fourn->fourn_unitprice;
-			$pu_ttc = $product_fourn->price_ttc;
+		//Use buying prices from predefined supplier prices
+		if(empty($unit_price)){
+			include_once DOL_DOCUMENT_ROOT.'/fourn/class/fournisseur.product.class.php';
+			$product_fourn = new ProductFournisseur($db);
+			$product_fourn_result = $product_fourn->find_min_price_product_fournisseur($prod->id, $qty, $object->thirdparty->id);			
+			if($product_fourn_result > 0){
+				$unit_price = $product_fourn->fourn_price;
+				$pu_ttc = $product_fourn->fourn_unitprice;
+				$price_base_type = 'HT';
+			}
 		}
 
 		// Define output language
@@ -171,17 +174,17 @@ class Utils
 		// Insert line
 		$result = $object->addline(
 			$desc, //Description
-			$default_cost_price, //Unit price
+			$unit_price, //Unit price
 			$qty, //Quantity
 			$tva_tx, //Taux tva
 			$localtax1_tx, //Localtax1 tax
 			$localtax2_tx, //Localtax2 tax
 			$prod->id, //Id product
-			$object->thirdparty->id, //int Id supplier price
+			$product_fourn->product_fourn_price_id, //int Id supplier price
 			'',//string, //Supplier reference price
 			$percent_remise, //float Remise
-			$price_base_type, //string HT or TTC
-			$pu_ttc, //float Unit price TTC
+			$price_base_type, //string HT or TTC (Before taxes or tax included)
+			$pu_ttc, //float Unit price TTC (price tax included)
 			$type, //int Type of line (0=product, 1=service)
 			$info_bits, //More information
 			0, //bool Disable triggers

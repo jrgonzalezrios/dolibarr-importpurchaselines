@@ -1,5 +1,5 @@
 ImportPurchaseLinesInfo=Information of Import Purchase Lines module
-ImportPurchaseLines=Import purchase liness
+ImportPurchaseLines=Import purchase lines
 SelectFileToImport=Select the file you want to import
 UploadFileError=There was a problem while uploading the file
 UploadFileErrorUnsupportedFormat=Uploaded file is not a valid Spreadsheet
