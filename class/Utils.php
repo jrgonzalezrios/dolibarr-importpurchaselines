@@ -112,13 +112,13 @@ class Utils
 		$localtax1_tx = get_localtax($tva_tx, 1, $object->thirdparty);
 		$localtax2_tx = get_localtax($tva_tx, 2, $object->thirdparty);
 
-		$unit_price = $prod->cost_price;
-		$pu_ttc = $prod->price_ttc;
+		$pu_ttc = $prod->cost_price;
 		$price_base_type = $prod->price_base_type;
-		$type = $prod->type;		
+		$type = $prod->type;
+		$supplier_id_price = null;
 
 		//Use buying prices from predefined supplier prices
-		if(empty($unit_price)){
+		if($conf->global->SUPPLIER_ORDER_WITH_PREDEFINED_PRICES_ONLY){
 			include_once DOL_DOCUMENT_ROOT.'/fourn/class/fournisseur.product.class.php';
 			$product_fourn = new ProductFournisseur($db);
 			$product_fourn_result = $product_fourn->find_min_price_product_fournisseur($prod->id, $qty, $object->thirdparty->id);			
@@ -126,7 +126,12 @@ class Utils
 				$unit_price = $product_fourn->fourn_price;
 				$pu_ttc = $product_fourn->fourn_unitprice;
 				$price_base_type = 'HT';
+				$supplier_id_price = $product_fourn->product_fourn_price_id;
+			}else{
+				throw new Exception($langs->trans('ErrorInvalidPredefinedPrice', $prod->ref));
 			}
+		}else{
+			$unit_price = $prod->cost_price;
 		}
 
 		// Define output language
@@ -170,7 +175,7 @@ class Utils
 		} else {
 			$percent_remise=0;
 		}
-		
+
 		// Insert line
 		$result = $object->addline(
 			$desc, //Description
@@ -180,7 +185,7 @@ class Utils
 			$localtax1_tx, //Localtax1 tax
 			$localtax2_tx, //Localtax2 tax
 			$prod->id, //Id product
-			$product_fourn->product_fourn_price_id, //int Id supplier price
+			$supplier_id_price, //int Id supplier price
 			'',//string, //Supplier reference price
 			$percent_remise, //float Remise
 			$price_base_type, //string HT or TTC (Before taxes or tax included)

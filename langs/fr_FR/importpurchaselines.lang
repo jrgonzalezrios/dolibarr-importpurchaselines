@@ -8,6 +8,7 @@ ErrorProductNotFound=Produit avec ref %s non trouvé
 ErrorAddpurchaseLine=Erreur en essayant d'ajouter le produit %s à la commande
 ErrorZipExtensionNotAvailable=L'extension Zip est nécessaire et n'est pas disponible sur ce serveur.
 ErrorProductInvalidQty=Le produit avec ref% a une quantité invalide.
+ErrorInvalidPredefinedPrice=Erreur lors de l'ajout du produit % s à la commande, prix prédéfini non valide
 
 #Admin page
 ImportPurchaseLinesTitle=Importer un fichier
