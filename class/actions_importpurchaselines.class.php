@@ -119,9 +119,17 @@ class ActionsImportpurchaselines
 				$a1 = $activesheet->getCell('A1')->getValue() == $langs->transnoentities('Ref');
 				$b1 = $activesheet->getCell('B1')->getValue() == $langs->transnoentities('Label');
 				$c1 = $activesheet->getCell('C1')->getValue() == $langs->transnoentities('Qty');
+				$d1 = $activesheet->getCell('D1')->getValue() == $langs->transnoentities('Cost');
 
 				if (!$a1 || !$b1 || !$c1) {
 					throw new Exception($langs->trans('UploadFileErrorFormat'));
+				}
+
+				//Force to use an specific cost price by product
+				$useCostInFile = false;
+				$costInFile = null;
+				if($d1){
+					$useCostInFile = true;
 				}
 
 				$maxrow = $activesheet->getHighestRow();
@@ -146,6 +154,15 @@ class ActionsImportpurchaselines
 							$fileHasErrors = true;
 							throw new Exception($langs->trans('ErrorProductInvalidQty', $ref));
 						}
+						if($useCostInFile){
+							//Use price as float
+							$costInFile = (float) $activesheet->getCellByColumnAndRow(3, $i)->getValue();							
+							if ($costInFile < 0) {
+								$ref .= $rowNum;
+								$fileHasErrors = true;
+								throw new Exception($langs->trans('ErrorProductInvalidCostPrice', $ref));
+							}
+						}
 
 						unset($prod);
 						if($fileHasErrors){
@@ -161,15 +178,20 @@ class ActionsImportpurchaselines
 					if (isset($qty)) {
 
 						$ref = $activesheet->getCellByColumnAndRow(0, $i)->getValue();
-						$prixuht =$activesheet->getCellByColumnAndRow(3, $i)->getValue();
 
 						$prod = new Product($db);
 
 						if ($prod->fetch('', $ref) <= 0) {
 							throw new Exception($langs->trans('ErrorProductNotFound', $ref));
 						}
+						//Use cost in file
+						if($useCostInFile){
+							$costInFile = (float) $activesheet->getCellByColumnAndRow(3, $i)->getValue();
+							//trunc more than 2 decimals if exist
+							$costInFile = bcdiv($costInFile, 1, 2);
+						}
 
-						Utils::addpurchaseLine($object, $prod, $qty, $prixuht);
+						Utils::addpurchaseLine($object, $prod, $qty, $costInFile);
 
 						unset($prod);
 					}

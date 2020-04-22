@@ -10,6 +10,7 @@ ErrorZipExtensionNotAvailable=Zip extension is required and it is not available 
 ErrorProductInvalidQty=Product with ref %s has an invalid quantity
 ErrorAddpurchaseLine= Error trying to add product % s to the order
 ErrorInvalidPredefinedPrice=Error trying to add product % s to the order, invalid predefined price
+ErrorProductInvalidCostPrice=Error trying to add product % s to the order, invalid cost price
 
 #Admin page
 ImportPurchaseLinesTitle=Import file

@@ -101,7 +101,7 @@ class Utils
 	 * @param int $qty Quantity of the product
 	 * @throws Exception
 	 */
-	public static function addpurchaseLine(CommandeFournisseur $object, Product $prod, $qty, $prixuht)
+	public static function addpurchaseLine(CommandeFournisseur $object, Product $prod, $qty, $costInFile)
 	{
 		global $db, $conf, $mysoc, $langs;
 
@@ -130,10 +130,13 @@ class Utils
 			}else{
 				throw new Exception($langs->trans('ErrorInvalidPredefinedPrice', $prod->ref));
 			}
-		}else{
+		}else if ( ! empty($costInFile)){
+			$unit_price = $costInFile;
+			$price_base_type = 'HT';
+		}
+		else{
 			$unit_price = $prod->cost_price;
 		}
-
 		// Define output language
 		if (! empty($conf->global->MAIN_MULTILANGS) && ! empty($conf->global->PRODUIT_TEXTS_IN_THIRDPARTY_LANGUAGE)) {
 			$outputlangs = $langs;
